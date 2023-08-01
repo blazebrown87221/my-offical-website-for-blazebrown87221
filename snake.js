@@ -1,4 +1,4 @@
-const canvas = document.getElementById("game-container");
+const canvas = document.querySelector("#game-container canvas");
 const ctx = canvas.getContext("2d");
 
 const GRID_SIZE = 10;
@@ -46,8 +46,21 @@ document.addEventListener("keydown", (event) => {
     case "ArrowRight":
       snake.direction = { x: 1, y: 0 };
       break;
+    case "Enter":
+      const input = document.getElementById("command-input").value;
+      if (input.startsWith("owner:")) {
+        const ownerName = input.split("owner:")[1].trim();
+        displayOwner(ownerName);
+      }
+      document.getElementById("command-input").value = "";
+      break;
   }
 });
 
-setInterval(mainLoop, 100);
+function displayOwner(ownerName) {
+  const output = document.createElement("div");
+  output.textContent = "Owner: " + ownerName;
+  document.body.appendChild(output);
+}
 
+setInterval(mainLoop, 100);
