@@ -50,3 +50,4 @@ document.addEventListener("keydown", (event) => {
 });
 
 setInterval(mainLoop, 100);
+
